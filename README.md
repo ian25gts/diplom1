@@ -51,7 +51,8 @@
 
 2. После развертывания контейнера для запуска SUT выполнить команду в консоли:
 
-+ java -jar aqa-shop.jar
++ для  для **Postgresql -** java "-Dspring.datasource.url=jdbc:postgresql://localhost:5432/app" -jar aqa-shop.jar
++ для **MySQL -** java "-Dspring.datasource.url=jdbc:mysql://localhost:3306/app" -jar aqa-shop.jar
 
 3. Запустить тесты командой в консоли:
 
