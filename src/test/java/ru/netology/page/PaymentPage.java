@@ -7,20 +7,22 @@ import ru.netology.data.Card;
 import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class CreditPage {
-    private SelenideElement headingCredit = $$("h3.heading").find(exactText("Кредит по данным карты"));
+public class PaymentPage {
+    private SelenideElement headingPayment = $$("h3.heading").find(exactText("Оплата по карте"));
     private SelenideElement cardNumberField = $("input[placeholder='0000 0000 0000 0000']");
     private SelenideElement monthField = $("input[placeholder='08']");
     private SelenideElement yearField = $("input[placeholder='22']");
     private SelenideElement cvcField = $("input[placeholder='999']");
     private SelenideElement ownerField = $$(".input__control").get(3);
     private SelenideElement continueButton = $$(".button").find(exactText("Продолжить"));
+    private final SelenideElement failureNote =  $(byText("Ошибка! Банк отказал в проведении операции."));
 
-    public CreditPage() {
-        headingCredit.shouldBe(visible);
+    public PaymentPage() {
+        headingPayment.shouldBe(visible);
     }
 
     public void getFillCardDetails(Card cardInfo) {
@@ -32,12 +34,13 @@ public class CreditPage {
         continueButton.click();
     }
 
-    public void successfulPaymentCreditCard() {
+
+    public void successfulPaymentDebitCard() {
         $(".notification_status_ok")
                 .shouldHave(text("Успешно Операция одобрена Банком."), Duration.ofSeconds(15)).shouldBe(visible);
     }
 
-    public void invalidPaymentCreditCard() {
+    public void invalidPaymentDebitCard() {
         $(".notification_status_error")
                 .shouldHave(text("Ошибка! Банк отказал в проведении операции."), Duration.ofSeconds(20)).shouldBe(visible);
     }
@@ -75,5 +78,4 @@ public class CreditPage {
         $$(".input__sub").shouldHave(CollectionCondition.size(5))
                 .shouldHave(CollectionCondition.texts("Поле обязательно для заполнения"));
     }
-
 }
