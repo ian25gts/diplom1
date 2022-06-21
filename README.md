@@ -56,7 +56,8 @@
 
 3. Запустить тесты командой в консоли:
 
-+ ./gradlew clean test
++ для **MySQL** - ./gradlew clean test "-Ddb.url=jdbc:mysql://localhost:3306/app"
++ для **Postgresql** - ./gradlew clean test "-Ddb.url=jdbc:postgresql://localhost:5432/app"
 
 4. Для получения отчета о тестировании запустить в консоли:
 
