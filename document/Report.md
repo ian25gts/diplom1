@@ -41,4 +41,4 @@
 
 ![Gradle](Gradle/3.png)
 
- Все результаты:
+ Все результаты: https://github.com/ian25gts/diplom1/tree/master/document
