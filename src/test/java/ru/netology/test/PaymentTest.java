@@ -31,6 +31,7 @@ public class PaymentTest {
         SelenideLogger.removeListener("allure");
         DbUtils.deleteTables();
     }
+
     @Test
     void shouldPaymentWithApprovedCard() {
         var startPage = new StartPage();
@@ -42,6 +43,7 @@ public class PaymentTest {
         String actual = DbUtils.getStatusPayment();
         assertEquals("APPROVED", actual);
     }
+
     @Test
     void shouldPaymentWithApprovedCardExpires() {
         var startPage = new StartPage();
@@ -290,5 +292,15 @@ public class PaymentTest {
         var paymentPage = startPage.payment();
         paymentPage.getFillCardDetails(card);
         paymentPage.checkAllFieldsAreRequired();
+    }
+
+    @Test
+    void shouldPaymentCardInvalidAllZero() {
+        var startPage = new StartPage();
+        Card card = new Card(
+                getInvalidZeroNumberCard(), getInvalidMonthCard(), getInvalidZeroYearsCard(), getInvalidZeroNameCard(), getInvalidZeroCvcCard());
+        var paymentPage = startPage.payment();
+        paymentPage.getFillCardDetails(card);
+        paymentPage.checkInvalidFormat();
     }
 }

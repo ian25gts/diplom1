@@ -44,6 +44,7 @@ public class CreditTest {
         String actual = DbUtils.getStatusCredit();
         assertEquals("APPROVED", actual);
     }
+
     @Test
     void shouldPaymentWithApprovedCardExpires() {
         var startPage = new StartPage();
@@ -294,4 +295,13 @@ public class CreditTest {
         creditPage.checkAllFieldsAreRequired();
     }
 
+    @Test
+    void shouldPaymentCardInvalidAllZero() {
+        var startPage = new StartPage();
+        Card card = new Card(
+                getInvalidZeroNumberCard(), getInvalidMonthCard(), getInvalidZeroYearsCard(), getInvalidZeroNameCard(), getInvalidZeroCvcCard());
+        var creditPage = startPage.paymentOnCredit();
+        creditPage.getFillCardDetails(card);
+        creditPage.checkInvalidFormat();
+    }
 }

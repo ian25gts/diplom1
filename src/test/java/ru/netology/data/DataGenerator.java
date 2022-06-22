@@ -22,7 +22,7 @@ public class DataGenerator {
     }
 
     public static String getInvalidCardNumber() {
-        return faker.finance().creditCard();
+        return faker.numerify("5### #### #### ####");
     }
 
     public static String getInvalidShortCardNumber() {
@@ -77,7 +77,25 @@ public class DataGenerator {
     public static String getInvalidOwnerCardWithNumbers() {
         return (faker.name().firstName() + faker.numerify("#######"));
     }
+
     public static String getInvalidOwnerCardOneLetterName() {
         return "G";
     }
+
+    public static String getInvalidZeroNumberCard() {
+        return "0000000000000000";
+    }
+
+    public static String getInvalidZeroYearsCard() {
+        return "00";
+    }
+
+    public static String getInvalidZeroNameCard() {
+        return "0000";
+    }
+
+    public static String getInvalidZeroCvcCard() {
+        return "000";
+    }
+
 }
