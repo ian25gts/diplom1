@@ -87,7 +87,7 @@ public class CreditTest {
                 getInvalidCardNumber(), getMonthCard(2), getYearCard(1), getOwnerCard(), getCvc());
         var creditPage = startPage.paymentOnCredit();
         creditPage.getFillCardDetails(card);
-        creditPage.checkInvalidCardValidityPeriod();
+        creditPage.checkInvalidFormat();
     }
 
     @Test
